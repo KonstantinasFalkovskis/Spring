@@ -28,7 +28,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       if: always()
-      run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/frontend/e2e.xml -Dspring.profiles.active=stage
+      run: mvn clean test 
+    # -Dsurefire.suiteXmlFiles=./src/test/resources/suites/frontend/e2e.xml -Dspring.profiles.active=stage
     # mvn package
       continue-on-error: true
     #  run: mvn clean verify -Dsurefire.suiteXmlFiles=./src/test/resources/suites/frontend/e2e.xml -Dspring.profiles.active=stage
