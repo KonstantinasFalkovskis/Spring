@@ -1,0 +1,6 @@
+{
+  "dependencies": {},
+  "devDependencies": {
+    "@percy/cli": "^1.18.0"
+  }
+}
