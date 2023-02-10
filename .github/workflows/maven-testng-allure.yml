@@ -52,9 +52,9 @@ jobs:
 #        env:
         with:
 # PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          deploy_key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          deploy_key: ${{ secrets.deploy_key_win }}
 #          github_token: ${{ secrets.GITHUB_TOKEN }}
 #          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+#          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_branch: gh-pages
           publish_dir: allure-history
