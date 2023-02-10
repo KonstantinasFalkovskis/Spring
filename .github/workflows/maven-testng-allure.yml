@@ -52,7 +52,7 @@ jobs:
 #        env:
         with:
 # PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          deploy_key: ${{ secrets.deploy_key_win }}
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
 #          github_token: ${{ secrets.GITHUB_TOKEN }}
 #          repo-token: ${{ secrets.GITHUB_TOKEN }}
 #          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
