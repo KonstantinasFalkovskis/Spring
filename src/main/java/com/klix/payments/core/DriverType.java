@@ -29,6 +29,7 @@ public enum DriverType implements DriverSetup {
             chromePreferences.put("download.default_directory", new File("target/tmp/downloads").getAbsolutePath());
             var options = new ChromeOptions();
             options.setExperimentalOption("prefs", chromePreferences);
+            options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors","--disable-extensions","--no-sandbox","--disable-dev-shm-usage");
             return new ChromeDriver(options.merge(capabilities));
         }
     }

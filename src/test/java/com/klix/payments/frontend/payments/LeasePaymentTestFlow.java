@@ -2,30 +2,35 @@ package com.klix.payments.frontend.payments;
 
 import com.klix.payments.TestBase;
 import com.klix.payments.global.GlobalMethods;
-import com.klix.payments.pages.demostore.finansing.*;
-//import com.klix.payments.pages.demostore.finansing.FinancingPageMethods;
-//import io.qameta.allure.Description;
+import com.klix.payments.pages.demostore.finansing.FinancingPageAssertions;
+import com.klix.payments.pages.demostore.finansing.FinancingPageMethods;
+import com.klix.payments.utils.Percy;
+import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-//import io.qameta.allure.Story;
+import io.qameta.allure.Story;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.BeforeClass;
-//import org.testng.annotations.BeforeTest;
-//import org.testng.annotations.Test;
-//
-//import static com.klix.payments.global.constants.GlobalConstants.ClassNames.STEPS_HEADER;
-//import static com.klix.payments.global.constants.GlobalConstants.ElementNames.PERSONAL_CODE;
-//import static com.klix.payments.global.constants.GlobalConstants.ElementNames.PHONE;
-//import static com.klix.payments.global.constants.GlobalConstants.GlobalLabels.*;
-//import static com.klix.payments.global.constants.GlobalConstants.Months.*;
-//import static com.klix.payments.global.constants.GlobalConstants.OfferExamples.*;
-//import static com.klix.payments.global.constants.GlobalConstants.Texts.*;
-//import static com.klix.payments.global.constants.GlobalConstants.Users.DependentCounts.NO_DEPENDENTS;
-//import static com.klix.payments.global.constants.GlobalConstants.Users.ElementId.*;
-//import static com.klix.payments.global.constants.GlobalConstants.Users.IncomeTypes.SALARY;
-//import static com.klix.payments.global.constants.GlobalConstants.Users.MaritalStatus.MARRIED;
-//import static com.klix.payments.global.constants.GlobalConstants.Users.PaymentDates.TENTH;
-//import static com.klix.payments.global.constants.GlobalConstants.Users.USER_1;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import static com.klix.payments.global.constants.GlobalConstants.ClassNames.STEPS_HEADER;
+import static com.klix.payments.global.constants.GlobalConstants.ElementNames.PERSONAL_CODE;
+import static com.klix.payments.global.constants.GlobalConstants.ElementNames.PHONE;
+import static com.klix.payments.global.constants.GlobalConstants.GlobalLabels.*;
+import static com.klix.payments.global.constants.GlobalConstants.Months.*;
+import static com.klix.payments.global.constants.GlobalConstants.OfferExamples.*;
+import static com.klix.payments.global.constants.GlobalConstants.Texts.*;
+import static com.klix.payments.global.constants.GlobalConstants.Users.DependentCounts.NO_DEPENDENTS;
+import static com.klix.payments.global.constants.GlobalConstants.Users.ElementId.*;
+import static com.klix.payments.global.constants.GlobalConstants.Users.IncomeTypes.SALARY;
+import static com.klix.payments.global.constants.GlobalConstants.Users.MaritalStatus.MARRIED;
+import static com.klix.payments.global.constants.GlobalConstants.Users.PaymentDates.TENTH;
+import static com.klix.payments.global.constants.GlobalConstants.Users.USER_1;
 
 @Epic("Klix payments flow")
 @Feature("Positive payment flow")
@@ -37,11 +42,11 @@ public class LeasePaymentTestFlow extends TestBase {
     @Autowired
     FinancingPageAssertions financingPageAssertions;
 
-//    @Autowired
-//    FinancingPageAssertions financingPageAssertions;
-//
-//    @Autowired
-//    FinancingPageMethods financingPageMethods;
+    @Autowired
+    FinancingPageMethods financingPageMethods;
+
+    public Percy percy;
+    //= new Percy(webDriver);
 
     @BeforeClass(alwaysRun = true)
     public void preTest() {
@@ -56,20 +61,29 @@ public class LeasePaymentTestFlow extends TestBase {
 //    public void slowDownDriver() throws InterruptedException {
 //        Thread.sleep(2000);
 //    }
-//
-//    @Story("Verify calculations details of the payment method for different periods")
-//    @Description("Calculation details verification for 1 mont")
-//    @Test()
-//    public void paymentDetailsForOneMonthTest() {
+
+    @Story("Verify calculations details of the payment method for different periods")
+    @Feature("Leasing")
+    @Description("Calculation details verification for 1 mont")
+    @Test()
+    public void paymentDetailsForOneMonthTest() throws JSONException {
+        percy = new Percy(webDriver);
+        System.out.println("Done");
+//        globalMethods.openShoppingCart();
+//        percy.snapshot("Shopping Cart");
+        webDriver.navigate().to("https://shop.stage.klix.app/demo");
+        percy.snapshot("Klix", "");
 //        financingPageAssertions.assertCalculationDetails(MON_1, ONE_MONTH.getMonth(), CALCULATION_DETAILS.getText());
-//    }
-//
-//    @Story("Verify calculations details of the payment method for different periods")
-//    @Description("Calculation details verification for 3 months")
-//    @Test(dependsOnMethods = "paymentDetailsForOneMonthTest")
-//    public void paymentDetailsForThreeMonthTest() {
+    }
+
+    @Story("Verify calculations details of the payment method for different periods")
+    @Description("Calculation details verification for 3 months")
+    @Test(dependsOnMethods = "paymentDetailsForOneMonthTest")
+    public void paymentDetailsForThreeMonthTest() throws JSONException {
+        globalMethods.openShoppingCart();
+        percy.snapshot("Shopping Cart");
 //        financingPageAssertions.assertCalculationDetails(MON_3, THREE_MONTH.getMonth(), CALCULATION_DETAILS.getText());
-//    }
+    }
 //
 //    @Story("Verify calculations details of the payment method for different periods")
 //    @Description("Calculation details verification for 6 months")

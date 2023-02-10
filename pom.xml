@@ -110,6 +110,7 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -173,11 +174,11 @@
             <artifactId>browserstack-local-java</artifactId>
             <version>${browserstack-local-java.version}</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>io.percy</groupId>-->
-        <!--            <artifactId>percy-java-selenium</artifactId>-->
-        <!--            <version>1.0.0</version>-->
-        <!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.percy</groupId>-->
+<!--            <artifactId>percy-java-selenium</artifactId>-->
+<!--            <version>1.2.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-maven</artifactId>
@@ -191,6 +192,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
                 <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>10</source>
+                    <target>10</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -215,6 +219,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
+                    <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/suites/frontend/e2e.xml</suiteXmlFile>
                     </suiteXmlFiles>
@@ -235,19 +240,15 @@
                     </dependency>
                 </dependencies>
             </plugin>
-        </plugins>
-    </build>
-    <reporting>
-        <excludeDefaults>true</excludeDefaults>
-        <plugins>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.12.0</version>
                 <configuration>
-                    <reportVersion>${allure.version}</reportVersion>
+                    <reportVersion>2.12.0</reportVersion>
                 </configuration>
             </plugin>
+
         </plugins>
-    </reporting>
+    </build>
 </project>

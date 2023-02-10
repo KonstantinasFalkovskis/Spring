@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
+
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -57,4 +59,5 @@ public class SpringConfig {
     ) {
         return new WebDriverWait(webDriver, waitExplicitSec, waitImplicitMilliSec);
     }
+
 }

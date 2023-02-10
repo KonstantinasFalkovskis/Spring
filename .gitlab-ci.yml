@@ -1,0 +1,76 @@
+image: atools/chrome-headless:java11-node14-latest
+#  maven:3.8-openjdk-11
+
+stages:
+  - build
+  - smoke
+  - reports
+
+default:
+  tags:
+    - gitlab-org-docker
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+.dependencies_cache:
+  cache:
+    key:
+      files:
+        - pom.xml
+        - package-lock.json
+    policy: pull
+
+Dependencies:
+  stage: build
+  script:
+    - mvn clean install -DskipTests
+    - npm install
+  artifacts:
+    when: always
+    paths:
+      - .m2/repository/
+      - target/
+      - node_modules/
+    expire_in: 5 days
+  extends: .dependencies_cache
+  cache:
+    policy: pull-push
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+
+Smoke:
+  stage: smoke
+  before_script:
+    - export ENV=$ENV
+    - export TYPE=$TYPE
+    - echo $ENV
+    - echo $TYPE
+    - export PERCY_TOKEN=$PERCY_TOKEN
+  script:
+    - npm install --save-dev @percy/cli
+    - npx percy exec -- mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/frontend/e2e.xml -Ddriver.type=$TYPE -Dspring.profiles.active=$ENV
+  artifacts:
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+    when: always
+    paths:
+      - /builds/FalcoConstantine/klix/target/allure-results
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  allow_failure: true
+
+Allure report:
+  stage: reports
+  script:
+    - mvn io.qameta.allure:allure-maven:report
+    - echo "Allure report - https://${CI_PROJECT_NAMESPACE}.${CI_PAGES_DOMAIN}/-/${CI_PROJECT_NAME}/-/jobs/${CI_JOB_ID}/artifacts/target/site/allure-maven-plugin/index.html"
+  artifacts:
+    when: always
+    paths:
+      - /builds/FalcoConstantine/klix/target/site/allure-maven-plugin
+    expire_in: 1 day
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  allow_failure: true

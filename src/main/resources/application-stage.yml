@@ -19,7 +19,7 @@ report:
     file: ${report.extent.dir}/ExtentReport.html
   screenshots: ${report.baseDir}/screenshots
 webDriver:
-  mode: selenium
+  mode: browserStack
   browser: Chrome
   browserStack:
     local: true
