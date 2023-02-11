@@ -1,0 +1,1 @@
+[{"uid":"39ea2342deaadaef","name":"paymentDetailsForOneMonthTest","time":{"start":1676103511826,"stop":1676103518312,"duration":6486},"status":"passed","severity":"normal"},{"uid":"af7fce98ef0bde38","name":"paymentDetailsForThreeMonthTest","time":{"start":1676103518343,"stop":1676103518913,"duration":570},"status":"passed","severity":"normal"}]
