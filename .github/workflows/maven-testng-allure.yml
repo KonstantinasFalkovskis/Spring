@@ -11,6 +11,12 @@ defaults:
   run:
     shell: bash
 
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   maven-save:
     runs-on: ${{ matrix.os }}
@@ -28,6 +34,7 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
           cache: maven
+
       - name: Create files to cache
         run: |
           mvn verify -f __tests__/cache/maven/pom.xml
@@ -84,6 +91,17 @@ jobs:
 #            ${{ runner.os }}-maven-
 #      - run: mvn install -DskipTests
 
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - run: mvn install -DskipTests
+
+
       - name: Build with Maven
         if: always()
         run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/frontend/e2e.xml -Dspring.profiles.active=stage
@@ -115,3 +133,14 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
+
+#      - name: Post the link to the report
+#        if: always()
+#        uses: Sibz/github-status-action@v1
+#        with:
+#          authToken: ${{secrets.GITHUB_TOKEN}}
+#          context: 'Test report'
+#          description: 'Passed'
+#          state: 'success'
+#          sha: ${{ github.event.pull_request.head.sha }}
+#          target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}
