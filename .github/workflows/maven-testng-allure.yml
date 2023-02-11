@@ -31,12 +31,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Run setup-java with the cache for maven
-        uses: ./
-        id: setup-java
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
           java-version: '11'
+          distribution: 'temurin'
           cache: maven
 
       - name: Create files to cache
@@ -60,13 +59,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Run setup-java with the cache for maven
-        uses: ./
-        id: setup-java
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
           java-version: '11'
+          distribution: 'temurin'
           cache: maven
+
       - name: Confirm that ~/.m2/repository directory has been made
         run: |
           if [ ! -d ~/.m2/repository ]; then
