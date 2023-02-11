@@ -11,15 +11,19 @@ defaults:
   run:
     shell: bash
 
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: write
+#    concurrency:
+#      group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   maven-save:
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     strategy:
       fail-fast: false
       matrix:
@@ -31,7 +35,7 @@ jobs:
         uses: ./
         id: setup-java
         with:
-          distribution: 'adopt'
+          distribution: 'temurin'
           java-version: '11'
           cache: maven
 
@@ -44,6 +48,10 @@ jobs:
           fi
   maven-restore:
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     strategy:
       fail-fast: false
       matrix:
@@ -56,7 +64,7 @@ jobs:
         uses: ./
         id: setup-java
         with:
-          distribution: 'adopt'
+          distribution: 'temurin'
           java-version: '11'
           cache: maven
       - name: Confirm that ~/.m2/repository directory has been made
