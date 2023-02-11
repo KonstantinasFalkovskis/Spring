@@ -14,6 +14,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}  
 
     steps:
       - uses: actions/checkout@v3
@@ -23,6 +27,18 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
+          
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - run: mvn install
+      - run: mvn build
+        
+      
       - name: Build with Maven
         if: always()
         run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/frontend/e2e.xml -Dspring.profiles.active=stage
@@ -49,12 +65,7 @@ jobs:
       - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
-#        env:
         with:
-# PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          deploy_key: ${{ secrets.DEPLOY_KEY }}
-          github_token: ${{ secrets.PERSONAL_TOKEN }}
-#          repo-token: ${{ secrets.GITHUB_TOKEN }}
-#          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
