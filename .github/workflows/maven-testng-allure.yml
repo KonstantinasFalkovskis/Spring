@@ -95,7 +95,8 @@ jobs:
 
       - name: Build with Maven
         if: always()
-        run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/frontend/e2e.xml -Dspring.profiles.active=stage
+      - run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/frontend/e2e.xml -Dspring.profiles.active=stage
+      - run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/backend/default.xml -Dspring.profiles.active=stage
         continue-on-error: true
 
       - name: Get Allure history

@@ -1,0 +1,53 @@
+spring:
+  cache:
+    type: none
+  main:
+    lazy-initialization: true
+  jpa:
+    properties:
+      org.hibernate.flushMode: ALWAYS
+wait:
+  explicit:
+    seconds: 60
+  implicit:
+    seconds: 50
+report:
+  baseDir: target/reports
+  allure: ${report.baseDir}/allure-report
+  extent:
+    dir: ${report.baseDir}/extent
+    file: ${report.extent.dir}/ExtentReport.html
+  screenshots: ${report.baseDir}/screenshots
+webDriver:
+  mode: browserStack
+  browser: Chrome
+  browserStack:
+    local: true
+    os: OS X
+    osVersion: Big Sur
+    browserVersion: latest
+    browserName: Safari
+    domain: hub-cloud.browserstack.com/wd/hub
+    username: konstantinasfalk_nRhdcJ
+    key: hKWrodwfpD9scNcnWBaX
+url:
+  ui-url: https://shop.stage.klix.app/demo
+api:
+  base: https://api-sandbox.syntropystack.com/v1
+  workspaces: /network/auth/workspaces
+  tokens:
+    agent: /network/auth/agent-tokens
+    access:
+credentials:
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Imp5d0ZEZi1NeU9oRzV1dHZTb1B6SUt4cGZQRzV0NjUyN2tfSVJRcm1QNUUifQ.eyJpc3MiOiJodHRwczovL2xvZ2luLXNhbmRib3guc3ludHJvcHlzdGFjay5jb20vN2RkYjg3NjYtZThiYS00NWZmLThhMjctNzAwZjU5ZDdhYjQwL3YyLjAvIiwiZXhwIjoxNjcxNzk2NTY5LCJuYmYiOjE2NzExOTE3NjksImF1ZCI6IjFhY2IzNGQ0LTQzMzEtNGVmYS1hMmY3LWViZjVjMzcxZDkyMSIsInN1YiI6ImVjNWNiN2JjLTU2ZjUtNDY2My1hODQyLTBhYzM1YmMwNDQ5ZiIsIm5hbWUiOiJzeW50cm9weXRAZ21haWwuY29tIiwiZXh0ZW5zaW9uX2ludGVybmFsVXNlciI6IjEwNTMiLCJleHRlbnNpb25fb3duZXJVc2VyIjoxMDUzLCJleHRlbnNpb25fYWNjZXNzVG9rZW4iOmZhbHNlLCJleHRlbnNpb25fdmVyaWZpZWQiOnRydWUsIndvcmtzcGFjZV9pZCI6IiIsImVtYWlsIjoic3ludHJvcHl0QGdtYWlsLmNvbSIsInNjb3BlcyI6IlVTRVIiLCJyb2xlcyI6IlVTRVIiLCJwZXJtaXNzaW9ucyI6IiIsInRpZCI6IjdkZGI4NzY2LWU4YmEtNDVmZi04YTI3LTcwMGY1OWQ3YWI0MCIsIm5vbmNlIjoiYTBlODQ3OGYtNTJmZC00YTYyLThkNTQtYWNiY2QyNTFjNjRjIiwiYXpwIjoiMWFjYjM0ZDQtNDMzMS00ZWZhLWEyZjctZWJmNWMzNzFkOTIxIiwidmVyIjoiMS4wIiwiaWF0IjoxNjcxMTkxNzY5fQ.gD1IrspOGciATNnVj_jpLBlnW-ETDtAf9H9LanlRsjeit8REvwpXi0q0jfOLsMqam3oLBG61ZjXJTpI6dKAxKAAFmh3gHF1prV-2xW66iMnbPBZwT0aHL68qfVpcHIJqL_eUaWeltyLiVy7yP19Ehg-2fQ3OiK9PPt7xV5md8DzaoAG66iYWVOKH-6sfAtYMkcQ10jUch4E_ZwB95jpu1SSF2TseydXkwe3ODfWAIKYu6nyCVMBPeKAOMh_o_h2rePig-vTgqWmk2E674xuJvSfWsA681r-f40TdoBrqYJ0uKMbUX2sg8TlwhbZH0Hl9ShqDqFUmGvFmCvfe1wb2JQ
+percy:
+  token: 48592d77960798d4ce083267c37de4eb7922c3f41975c7f7236309b008b8ea90
+appiumDriver:
+  mode: browserStack
+  device: Google pixel 3
+  mobOs: Android
+  mobOsVersion: 9.0
+  project: Klix app project
+  build: Test build
+  name: Android app test
+  app: bs://737235b2fc0d0eb02aeb4306ee33792cb1802725

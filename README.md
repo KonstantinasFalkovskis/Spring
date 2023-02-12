@@ -25,7 +25,13 @@ Auto tests are executing via Maven and TestNG. Tests are describing inside xml t
 
 Auto tests executing from command line:
 ```
-mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/frontend/e2e.xml
+mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/frontend/e2e.xml -Dspring.profiles.active=stage
+
+mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/backend/default.xml
+
+mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/backend/default.xml -rf :payments-backend
+
+mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/backend/default.xml -Dspring.profiles.active=stage
 ```
 
 ## Reporting

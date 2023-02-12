@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="API tests suite for klix online loans platform">
+    <test thread-count="4" name="Backend Payment flow">
+        <classes>
+            <class name="com.klix.tests.backend.tests.WorkspacesController" />
+        </classes>
+    </test>
+</suite>
