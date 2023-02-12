@@ -30,13 +30,11 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-m2-
-      - run: mvn verify -DskipTests
+      - run: mvn clean install
 
       - name: UI tests
         if: always()
       - run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/klix/default.xml -Dspring.profiles.active=stage -pl frontend
-#       - run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/klix/default.xml -Dspring.profiles.active=stage -pl backend
-#       - run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/klix/default.xml -Dspring.profiles.active=stage -pl mobile  
         continue-on-error: true
 
       - name: Get Allure history
