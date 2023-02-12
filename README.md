@@ -33,15 +33,3 @@ mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/backend/defa
 
 mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/backend/default.xml -Dspring.profiles.active=stage
 ```
-
-## Reporting
-### Setup
-<b>npm install -g allure-commandline --save-dev</b>
-
-## Generate reports 
-- allure generate allure-results
-
-## Open reports
-- allure open allure-report
-
-*local allure server will be opened with tests results
