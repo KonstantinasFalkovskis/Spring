@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression test suite of Android application">
+    <test name="Regression tests suite">
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="regression"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+        <classes>
+            <class name="com.klix.mobile.chat.ChatTest"/>
+        </classes>
+    </test>
+</suite>

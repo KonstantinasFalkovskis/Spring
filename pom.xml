@@ -8,11 +8,20 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>klix</name>
     <description>klix</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>library</module>
+        <module>backend</module>
+        <module>frontend</module>
+        <module>mobile</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.7.RELEASE</version>
+        <relativePath/>
     </parent>
 
     <properties>
@@ -222,6 +231,7 @@
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/suites/frontend/e2e.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/suites/backend/default.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
