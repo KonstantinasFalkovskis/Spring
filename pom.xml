@@ -12,8 +12,8 @@
 
     <modules>
         <module>library</module>
-        <module>backend</module>
         <module>frontend</module>
+        <module>backend</module>
         <module>mobile</module>
     </modules>
 
@@ -230,8 +230,7 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/suites/frontend/e2e.xml</suiteXmlFile>
-                        <suiteXmlFile>src/test/resources/suites/backend/default.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/suites/default.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"

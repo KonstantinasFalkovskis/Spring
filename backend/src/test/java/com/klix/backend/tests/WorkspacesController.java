@@ -1,10 +1,10 @@
-package com.klix.tests.backend.tests;
+package com.klix.backend.tests;
 
+import com.klix.backend.config.BaseTest;
 import com.klix.backend.models.requests.WorkspacesRequest;
 import com.klix.backend.models.responses.Errors;
 import com.klix.backend.models.responses.WorkspacesResponse;
 import com.klix.backend.utils.exceptions.WorkspacesExceptions;
-import com.klix.tests.backend.config.BaseTest;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.testng.annotations.Test;

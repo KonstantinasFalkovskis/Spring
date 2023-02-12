@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="E2E tests suite for klix online loans platform">
-    <test thread-count="4" name="Payment flow">
+    <test name="Payment flow">
         <classes>
-            <class name="com.klix.frontend.frontend.payments.LeasePaymentTestFlow" />
+            <class name="com.klix.frontend.payments.LeasePaymentTestFlow" />
         </classes>
     </test>
 </suite>

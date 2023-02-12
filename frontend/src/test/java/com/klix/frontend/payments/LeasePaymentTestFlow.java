@@ -1,4 +1,4 @@
-package com.klix.frontend.frontend.payments;
+package com.klix.frontend.payments;
 
 import com.klix.frontend.TestBase;
 import com.klix.frontend.global.GlobalMethods;

@@ -1,6 +1,6 @@
-package com.klix.tests.backend.tests;
+package com.klix.backend.tests;
 
-import com.klix.tests.backend.config.BaseTest;
+import com.klix.backend.config.BaseTest;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

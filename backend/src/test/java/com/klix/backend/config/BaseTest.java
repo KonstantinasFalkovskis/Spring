@@ -1,4 +1,4 @@
-package com.klix.tests.backend.config;
+package com.klix.backend.config;
 
 import com.klix.backend.SpringConfig;
 import com.klix.backend.data.DataCleanup;
