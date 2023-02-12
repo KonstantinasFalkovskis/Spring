@@ -30,7 +30,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-m2-
-      - run: mvn verify -DskipTests
+      - run: mvn clean install
 
       - name: Mobile tests
         if: always()
