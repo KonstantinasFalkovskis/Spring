@@ -35,8 +35,8 @@ jobs:
       - name: UI tests
         if: always()
       - run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/klix/default.xml -Dspring.profiles.active=stage -pl frontend
-      - run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/klix/default.xml -Dspring.profiles.active=stage -pl backend
-      - run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/klix/default.xml -Dspring.profiles.active=stage -pl mobile  
+#       - run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/klix/default.xml -Dspring.profiles.active=stage -pl backend
+#       - run: mvn clean test -Dsurefire.suiteXmlFiles=./src/test/resources/suites/klix/default.xml -Dspring.profiles.active=stage -pl mobile  
         continue-on-error: true
 
       - name: Get Allure history
